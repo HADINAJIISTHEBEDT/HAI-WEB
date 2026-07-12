@@ -63,29 +63,16 @@
         }
       },
       ar: {
-        companyName: "هاي للذكاء البرمجي",
+        companyName: "HAI SOFTWARE INTELLIGENCE",
         tagline:
-          "نطوّر برمجيات ذكية، أنظمة آمنة، ومنتجات رقمية قابلة للتوسع للأعمال الحديثة.",
-        badges: ["برمجة", "تطوير", "حلول", "ابتكار", "أمان", "نمو"],
+          "نطوّر برمجيات ذكية وأنظمة آمنة ومنتجات رقمية قابلة للتوسع للشركات الحديثة.",
+        badges: ["برمجيات", "تطوير", "حلول", "ابتكار", "أمان", "نمو"],
         ui: {
           openLink: "فتح الرابط",
           adminPanel: "لوحة الإدارة",
           allRightsReserved: "جميع الحقوق محفوظة.",
           videoUrlLabel: "رابط الفيديو:",
           sectionsMenu: "الأقسام"
-        }
-      },
-      tr: {
-        companyName: "HAI YAZILIM ZEKASI",
-        tagline:
-          "Modern isletmeler icin akilli yazilimlar, guvenli sistemler ve olceklenebilir dijital urunler gelistiriyoruz.",
-        badges: ["Kod", "Gelishtir", "Coz", "Yenilik", "Guvenlik", "Buyume"],
-        ui: {
-          openLink: "Baglantiyi Ac",
-          adminPanel: "Yonetim Paneli",
-          allRightsReserved: "Tum haklari saklidir.",
-          videoUrlLabel: "Video Baglantisi:",
-          sectionsMenu: "Bolumler"
         }
       }
     },
@@ -496,7 +483,7 @@
         type: "contact",
         title: "Contact",
         description:
-          "Email: contact@haisoftware.com | Phone: +964 000 000 0000 | Address: Iraq - Erbil (Update in Admin)",
+          "Email: contact@haisoftware.com | Phone: +961 00 000 000 | Address: Lebanon (Update in Admin)",
         enabled: true,
         items: [
           {
@@ -603,12 +590,15 @@
     base.heroImageUrl = data.heroImageUrl || base.heroImageUrl;
     base.primaryColor = data.primaryColor || base.primaryColor;
     base.defaultLanguage =
-      data.defaultLanguage === "ar" || data.defaultLanguage === "tr" || data.defaultLanguage === "en"
+      data.defaultLanguage === "ar" || data.defaultLanguage === "en"
         ? data.defaultLanguage
         : base.defaultLanguage;
     base.translations =
       data.translations && typeof data.translations === "object"
-        ? data.translations
+        ? {
+            en: data.translations.en || base.translations.en,
+            ar: data.translations.ar || base.translations.ar
+          }
         : base.translations;
     base.sections = Array.isArray(data.sections)
       ? data.sections.map(mergeSection)

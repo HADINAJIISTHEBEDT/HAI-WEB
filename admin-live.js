@@ -1063,7 +1063,7 @@
       '<div class="field"><label>Tagline</label><textarea id="set-tagline"></textarea></div>' +
       '<div class="field"><label>Primary Color</label><input id="set-color" placeholder="#1e72ff" /></div>' +
       '<div class="field"><label>Default Language</label>' +
-      '<select id="set-lang"><option value="en">English</option><option value="ar">Arabic</option><option value="tr">Turkish</option></select></div>' +
+      '<select id="set-lang"><option value="en">English</option><option value="ar">Arabic</option></select></div>' +
       "<h3>Website Server</h3>" +
       '<div class="field"><label>Choose action</label>' +
       '<select id="set-web-action">' +

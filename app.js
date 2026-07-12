@@ -326,120 +326,60 @@
       about: {
         title: "من نحن",
         description:
-          "هاي للذكاء البرمجي شركة برمجيات تركّز على المنصات الذكية، أتمتة الأعمال، وبنية الأنظمة الموثوقة."
+          "HAI SOFTWARE INTELLIGENCE شركة برمجيات متخصصة في المنصات الذكية وأتمتة الأعمال وبناء الأنظمة الموثوقة."
       },
       services: {
         title: "خدماتنا",
-        description: "نقدم خدمات برمجية متكاملة من التخطيط وحتى الإطلاق والنمو."
+        description: "نقدّم خدمات برمجية متكاملة من التخطيط والتصميم إلى الإطلاق والتطوير المستمر."
       },
       solutions: {
         title: "القطاعات والحلول",
-        description: "نطوّر حلولاً مخصصة لقطاعات ونماذج أعمال مختلفة."
+        description: "نطوّر حلولاً رقمية مخصصة لقطاعات ونماذج عمل مختلفة."
       },
       apps: {
         title: "التطبيقات والمنتجات",
-        description: "مجموعة متنامية من المنتجات التي تطورها HAI."
+        description: "مجموعة متنامية من المنتجات البرمجية التي تطورها HAI."
       },
       links: {
         title: "روابط مهمة",
-        description: "روابط رسمية وموارد وقنوات تواصل."
+        description: "روابط رسمية وموارد مفيدة وقنوات تواصل مباشرة."
       },
       videos: {
         title: "الفيديوهات",
-        description: "فيديوهات تعريفية وعروض منتجات وشروحات."
+        description: "فيديوهات تعريفية وعروض للمنتجات وشروحات عملية."
       },
       process: {
         title: "طريقة عملنا",
-        description: "منهج تسليم منظم يركز على السرعة والجودة والشفافية."
+        description: "منهج عمل منظم يركز على السرعة والجودة والشفافية في كل مرحلة."
       },
       "tech-stack": {
         title: "التقنيات المستخدمة",
-        description: "تقنيات حديثة وموثوقة للواجهة والخلفية والبيانات والسحابة."
+        description: "نعتمد تقنيات حديثة وموثوقة للواجهات والخوادم والبيانات والحوسبة السحابية."
       },
       faq: {
         title: "الأسئلة الشائعة",
-        description: "إجابات لأكثر الأسئلة شيوعاً حول الخدمات والجداول الزمنية."
+        description: "إجابات واضحة عن أكثر الأسئلة شيوعاً حول خدماتنا وآلية التعاون والجداول الزمنية."
       },
       team: {
         title: "فريقنا",
-        description: "فريق متعدد التخصصات من المهندسين والمصممين وخبراء المنتجات."
+        description: "فريق متعدد التخصصات من المهندسين والمصممين وخبراء المنتجات الرقمية."
       },
       portfolio: {
-        title: "المعرض / المشاريع",
-        description: "نماذج من المشاريع والحلول البرمجية التي أنجزناها."
+        title: "الأعمال والمشاريع",
+        description: "نماذج مختارة من المشاريع والحلول البرمجية التي أنجزناها."
       },
       testimonials: {
         title: "آراء العملاء",
         description: "ماذا يقول عملاؤنا عن العمل مع HAI."
       },
       pricing: {
-        title: "الأسعار / الباقات",
-        description: "نماذج عمل مرنة للشركات الناشئة والمتوسطة والمؤسسات."
+        title: "الباقات والأسعار",
+        description: "نماذج تعاون مرنة للشركات الناشئة والشركات المتوسطة والمؤسسات."
       },
       contact: {
         title: "التواصل",
         description:
-          "البريد: contact@haisoftware.com | الهاتف: +964 000 000 0000 | العنوان: العراق - أربيل"
-      }
-    },
-    tr: {
-      about: {
-        title: "Hakkimizda",
-        description:
-          "HAI Yazilim Zekasi, akilli platformlar, is otomasyonu ve guvenilir sistem mimarisi uzerine odaklanir."
-      },
-      services: {
-        title: "Hizmetlerimiz",
-        description: "Planlamadan yayina ve buyumeye kadar tam yazilim hizmetleri sunuyoruz."
-      },
-      solutions: {
-        title: "Sektorler ve Cozumler",
-        description: "Farkli sektorler icin ozel yazilim cozumleri gelistiriyoruz."
-      },
-      apps: {
-        title: "Uygulamalar ve Urunler",
-        description: "HAI tarafindan gelistirilen buyuyen urun portfoyu."
-      },
-      links: {
-        title: "Faydali Baglantilar",
-        description: "Resmi baglantilar, kaynaklar ve iletisim kanallari."
-      },
-      videos: {
-        title: "Videolar",
-        description: "Sirket tanitimlari, urun demolari ve egitim videolari."
-      },
-      process: {
-        title: "Nasil Calisiyoruz",
-        description: "Hiz, kalite ve seffafliga odakli teslim sureci."
-      },
-      "tech-stack": {
-        title: "Teknoloji Yigini",
-        description: "On yuz, arka yuz, veri ve bulut icin modern teknolojiler."
-      },
-      faq: {
-        title: "Sik Sorulan Sorular",
-        description: "Hizmetlerimiz ve surecler hakkinda yaygin sorularin yanitlari."
-      },
-      team: {
-        title: "Ekibimiz",
-        description: "Muhendis, tasarimci ve urun uzmanlarindan olusan ekip."
-      },
-      portfolio: {
-        title: "Portfoy / Projeler",
-        description: "Ekibimizin teslim ettigi secili yazilim projeleri."
-      },
-      testimonials: {
-        title: "Musteri Yorumlari",
-        description: "Musterilerimizin HAI ile calisma deneyimleri."
-      },
-      pricing: {
-        title: "Fiyatlandirma / Paketler",
-        description: "Startup, KOBI ve kurumsal firmalar icin esnek modeller."
-      },
-      contact: {
-        title: "Iletisim",
-        description:
-          "E-posta: contact@haisoftware.com | Telefon: +964 000 000 0000 | Adres: Irak - Erbil"
+          "البريد: contact@haisoftware.com | الهاتف: +961 00 000 000 | العنوان: لبنان"
       }
     }
   };
@@ -541,7 +481,7 @@
     var buttonLabel = item.actionLabel || uiLabels.openLink || "Open";
     if (!actionType || actionType === "none") return null;
     var wrap = document.createElement("div");
-    wrap.className = "card-action-wrap";
+    wrap.className = "card-actions card-action-wrap";
     var btn = document.createElement("a");
     btn.href = item.url || "#";
     btn.className =
@@ -612,6 +552,19 @@
       wrap.appendChild(del);
     }
     return wrap;
+  }
+
+  function appendCardActions(card, actionWrap) {
+    if (!card || !actionWrap) return;
+    var row = card.querySelector(".card-actions");
+    if (!row) {
+      row = document.createElement("div");
+      row.className = "card-actions";
+      card.appendChild(row);
+    }
+    while (actionWrap.firstChild) {
+      row.appendChild(actionWrap.firstChild);
+    }
   }
 
   function decorateCard(card, section, itemIndex) {
@@ -964,18 +917,22 @@
       if (item.url) {
         var actionBtn = createActionButton(item, uiLabels, section.id, itemIndex);
         if (actionBtn) {
-          card.appendChild(actionBtn);
+          appendCardActions(card, actionBtn);
         } else {
+          var plainWrap = document.createElement("div");
+          plainWrap.className = "card-actions";
           var link = document.createElement("a");
           link.href = item.url;
           link.target = "_blank";
           link.rel = "noopener noreferrer";
+          link.className = "card-action btn-soft";
           link.textContent = uiLabels.openLink || "Open Link";
-          card.appendChild(link);
+          plainWrap.appendChild(link);
+          appendCardActions(card, plainWrap);
         }
       } else {
         var button = createActionButton(item, uiLabels, section.id, itemIndex);
-        if (button) card.appendChild(button);
+        if (button) appendCardActions(card, button);
       }
 
       grid.appendChild(decorateCard(card, section, itemIndex));
@@ -993,7 +950,7 @@
   }
 
   function applyLanguageDirection(lang) {
-    document.documentElement.lang = lang === "tr" ? "tr" : lang === "ar" ? "ar" : "en";
+    document.documentElement.lang = lang === "ar" ? "ar" : "en";
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   }
 
@@ -1004,8 +961,7 @@
 
     var options = [
       { code: "en", label: "English" },
-      { code: "ar", label: "العربية" },
-      { code: "tr", label: "Turkce" }
+      { code: "ar", label: "العربية" }
     ];
 
     options.forEach(function (opt) {

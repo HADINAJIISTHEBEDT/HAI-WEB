@@ -841,6 +841,9 @@ a {
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .card h3 {
@@ -856,7 +859,7 @@ a {
   line-height: 1.55;
 }
 
-.card a {
+.card > a:not(.card-action) {
   display: inline-block;
   margin-top: 0.65rem;
   color: var(--primary);
@@ -864,44 +867,79 @@ a {
   font-size: 0.9rem;
 }
 
+.card-actions,
 .card-action-wrap {
   display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  margin-top: 0.85rem;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.55rem;
+  margin-top: auto;
+  padding-top: 1rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .card a.card-action,
 .card-action {
+  flex: 0 1 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   margin-top: 0;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
+  min-height: 2.45rem;
+  padding: 0.62rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.24);
+  font-size: 0.88rem;
   font-weight: 700;
   text-decoration: none;
   color: #fff;
   width: auto;
+  max-width: 100%;
+  line-height: 1.2;
+  text-align: center;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.card a.card-action:hover,
+.card-action:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3);
 }
 
 .card a.card-action.btn-soft,
 .card-action.btn-soft {
   color: #d8e7ff;
+  background: rgba(22, 41, 71, 0.96);
+  border-color: rgba(141, 174, 232, 0.28);
 }
 
 .card-action-del {
   border: 0;
-  width: 1.5rem;
-  height: 1.5rem;
+  flex: 0 0 auto;
+  width: 2.1rem;
+  height: 2.1rem;
+  align-self: center;
   border-radius: 999px;
   background: #a8324d;
   color: #fff;
   cursor: pointer;
   font-size: 0.9rem;
   line-height: 1;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 540px) {
+  .card-actions {
+    align-items: stretch;
+  }
+
+  .card a.card-action,
+  .card-action {
+    flex: 1 1 100%;
+  }
 }
 
 .hero-add-btn {
