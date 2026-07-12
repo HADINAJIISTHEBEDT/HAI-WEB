@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAI Admin Login</title>
+    <link rel="stylesheet" href="./styles.css?v=20260712h" />
+  </head>
+  <body class="admin-page">
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-name">HAI SOFTWARE INTELLIGENCE - Admin</div>
+        </div>
+        <a class="admin-link" href="./index.html">Open Main Site</a>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="panel login-panel">
+        <h2>Admin Login</h2>
+        <p id="status" class="section-description">Enter password to edit the live website.</p>
+        <div class="field">
+          <label for="adminPassword">Password</label>
+          <input id="adminPassword" type="password" placeholder="Enter password" />
+        </div>
+        <div class="mini-actions">
+          <button id="login-btn" class="btn-primary" type="button">Unlock & Edit Website</button>
+        </div>
+
+        <hr style="border-color: var(--line); margin: 1.2rem 0;" />
+
+        <h3>Run Web / Stop Web</h3>
+        <p class="section-description">
+          In the project folder <strong>HAI WEB</strong> on your Desktop:
+        </p>
+        <ul class="section-description" style="padding-left: 1.2rem; line-height: 1.7;">
+          <li><strong>run-web.bat</strong> — starts the site and opens http://localhost:5500</li>
+          <li><strong>stop-web.bat</strong> — stops the site</li>
+          <li><strong>start-web.bat</strong> — same as run-web.bat</li>
+        </ul>
+        <p class="section-description">
+          After login you edit on <strong>index.html?admin=1</strong> (live site), not this login page.
+        </p>
+        <p class="section-description">
+          Terminal: <code>npm run run</code> or <code>.\run-web.bat</code> · Stop: <code>.\stop-web.bat</code>
+        </p>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var ADMIN_PASSWORD = "123hadi456";
+        var AUTH_KEY = "hai_admin_unlocked";
+        var statusBox = document.querySelector("#status");
+        var input = document.querySelector("#adminPassword");
+        var button = document.querySelector("#login-btn");
+
+        if (localStorage.getItem(AUTH_KEY) === "1") {
+          window.location.href = "./index.html?admin=1&v=20260712h";
+          return;
+        }
+
+        function unlock() {
+          if ((input.value || "").trim() !== ADMIN_PASSWORD) {
+            statusBox.textContent = "Wrong password.";
+            statusBox.style.color = "#ff8ea6";
+            return;
+          }
+          localStorage.setItem(AUTH_KEY, "1");
+          window.location.href = "./index.html?admin=1&v=20260712h";
+        }
+
+        button.addEventListener("click", unlock);
+        input.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") unlock();
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "hai-software-intelligence-web",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve -l 5500 .",
+    "run": "npx --yes serve -l 5500 .",
+    "stop": "node -e \"console.log('On Windows double-click stop-web.bat to free port 5500.')\""
+  }
+}

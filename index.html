@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HAI SOFTWARE INTELLIGENCE</title>
+    <link rel="stylesheet" href="./styles.css?v=20260712k" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <img class="brand-logo" data-logo src="" alt="Logo" />
+          <div class="brand-name" data-company-name>HAI SOFTWARE INTELLIGENCE</div>
+        </div>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Menu">
+          Menu
+        </button>
+        <select id="language-switch" class="language-switch" aria-label="Language"></select>
+        <a class="admin-link" data-admin-link href="./admin.html">Admin Panel</a>
+      </div>
+    </header>
+
+    <main class="container site-layout">
+      <aside class="section-sidebar" id="section-sidebar">
+        <h3 class="sidebar-title" data-sidebar-title>Sections</h3>
+        <input
+          id="section-search"
+          class="section-search"
+          type="search"
+          placeholder="Search sections..."
+        />
+        <nav class="sidebar-nav" data-nav></nav>
+      </aside>
+
+      <div class="site-content">
+        <section class="hero reveal">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <h1 data-company-name>HAI SOFTWARE INTELLIGENCE</h1>
+              <p data-tagline>
+                Build smarter software with intelligent systems.
+              </p>
+              <div class="hero-badges editable-block" data-badges></div>
+              <div class="hero-actions editable-block" data-hero-ctas></div>
+            </div>
+            <div class="hero-media">
+              <img data-hero-image src="" alt="Main visual" />
+            </div>
+          </div>
+        </section>
+
+        <div data-sections></div>
+
+        <section class="section reveal editable-block" id="contact-form-section" data-contact-block>
+          <h2 data-contact-title>Send a Message</h2>
+          <p class="section-description" data-contact-desc>
+            Tell us about your project and we will get back to you.
+          </p>
+          <form id="public-contact-form" class="contact-form" onsubmit="return false;">
+            <div class="row">
+              <div class="field">
+                <label for="contactName" data-free-text="label-contact-name">Name</label>
+                <input id="contactName" required />
+              </div>
+              <div class="field">
+                <label for="contactEmail" data-free-text="label-contact-email">Email</label>
+                <input id="contactEmail" type="email" required />
+              </div>
+            </div>
+            <div class="field">
+              <label for="contactMessage" data-free-text="label-contact-message">Message</label>
+              <textarea id="contactMessage" required></textarea>
+            </div>
+            <div class="mini-actions">
+              <button class="btn-primary" type="submit" id="contact-submit" data-contact-button>
+                Send Message
+              </button>
+            </div>
+            <p id="contact-status" class="section-description"></p>
+          </form>
+        </section>
+
+        <section class="section newsletter-section reveal editable-block" id="newsletter-section" data-newsletter-block>
+          <h2 data-news-title>Stay Updated</h2>
+          <p class="section-description" data-news-desc>
+            Get product updates and software insights from HAI.
+          </p>
+          <form id="newsletter-form" class="newsletter-form" onsubmit="return false;">
+            <input id="newsletterEmail" type="email" placeholder="your@email.com" required />
+            <button class="btn-primary" type="submit" data-news-button>Subscribe</button>
+          </form>
+          <p id="newsletter-status" class="section-description"></p>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid" data-footer-grid>
+        <div class="footer-col footer-brand" data-footer-col="brand">
+          <span data-company-name>HAI SOFTWARE INTELLIGENCE</span>
+          <p data-rights>All rights reserved.</p>
+        </div>
+        <div class="footer-col footer-links editable-block" data-footer-col="links" data-footer-links></div>
+        <div class="footer-col social-links editable-block" data-footer-col="social" data-social-links></div>
+      </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Back to top">
+      ↑
+    </button>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+    <script src="./firebase-config.js?v=20260712k"></script>
+    <script src="./firebase-service.js?v=20260712k"></script>
+    <script src="./data.js?v=20260712k"></script>
+    <script src="./admin-live.js?v=20260712k"></script>
+    <script src="./app.js?v=20260712k"></script>
+    <script src="./site-features.js?v=20260712k"></script>
+  </body>
+</html>
