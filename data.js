@@ -6,9 +6,9 @@
     tagline:
       "Engineering intelligent software, secure systems, and scalable digital products for modern businesses.",
     logoUrl:
-      "file:///C:/Users/Iman/.cursor/projects/c-Users-Iman-Desktop-HAI-WEB/assets/c__Users_Iman_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_MAIN_LOGO-3e04551a-fcf0-485a-978a-d660bdb36508.png",
+      "https://placehold.co/120x120/1e72ff/ffffff?text=HAI",
     heroImageUrl:
-      "file:///C:/Users/Iman/.cursor/projects/c-Users-Iman-Desktop-HAI-WEB/assets/c__Users_Iman_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_WEB_PHOTO-bd44f135-42ae-43a1-8f43-46bab8306f23.png",
+      "https://placehold.co/900x600/101a2e/bfd1ff?text=HAI+Software",
     primaryColor: "#1e72ff",
     defaultLanguage: "en",
     textOverrides: {},
@@ -84,6 +84,10 @@
         description:
           "HAI SOFTWARE INTELLIGENCE is a software company focused on intelligent web platforms, business automation, and reliable system architecture. We help organizations move from idea to production with practical AI and strong engineering standards.",
         enabled: true,
+        buttons: [
+          { id: "about-cta1", label: "Contact Us", href: "#contact", style: "primary" },
+          { id: "about-cta2", label: "Our Services", href: "#services", style: "soft" }
+        ],
         items: [
           {
             title: "Our Mission",
@@ -112,6 +116,10 @@
         description:
           "From planning to deployment and growth, we provide complete software services.",
         enabled: true,
+        buttons: [
+          { id: "svc-cta1", label: "Get a Quote", href: "#contact", style: "primary" },
+          { id: "svc-cta2", label: "See Solutions", href: "#solutions", style: "soft" }
+        ],
         items: [
           {
             title: "Web Development",
@@ -524,8 +532,19 @@
     next.url = next.url || "";
     next.videoUrl = next.videoUrl || "";
     next.imageUrl = next.imageUrl || "";
-    next.actionType = next.actionType || "none";
-    next.actionLabel = next.actionLabel || "Open";
+    next.actionType =
+      next.actionType ||
+      (next.videoUrl ? "video" : next.imageUrl ? "image" : next.url ? "link" : "none");
+    next.actionLabel =
+      next.actionLabel ||
+      (next.actionType === "video"
+        ? "Watch Video"
+        : next.actionType === "image"
+          ? "View Image"
+          : next.actionType === "none"
+            ? "Contact Us"
+            : "Open");
+    next.actionStyle = next.actionStyle || (next.actionType === "none" ? "soft" : "primary");
     next.i18n = next.i18n && typeof next.i18n === "object" ? next.i18n : {};
     return next;
   }

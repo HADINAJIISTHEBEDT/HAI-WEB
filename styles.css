@@ -230,8 +230,16 @@ a {
 
 .editable-block:hover > .hover-toolbar,
 .editable-block:focus-within > .hover-toolbar,
-.hover-toolbar:hover {
+.hover-toolbar:hover,
+.admin-inline-mode .editable-block > .hover-toolbar {
   display: flex;
+}
+
+.admin-inline-mode .add-inline-btn,
+.admin-inline-mode .hero-add-btn {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 .hover-btn {
@@ -692,9 +700,13 @@ a {
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal:not(.show) {
+  opacity: 0.96;
 }
 
 .reveal.show {

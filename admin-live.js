@@ -2,9 +2,13 @@
   "use strict";
 
   var AUTH_KEY = "hai_admin_unlocked";
+  var PREVIEW_KEY = "hai_admin_preview";
   var STORAGE_KEY = "hai_site_content_local_v2";
   var params = new URLSearchParams(window.location.search);
-  var wantsAdmin = params.get("admin") === "1";
+  var wantsAdmin =
+    params.get("admin") === "1" ||
+    localStorage.getItem(PREVIEW_KEY) === "1" ||
+    (window.location.hash || "").toLowerCase() === "#admin";
   var unlocked = localStorage.getItem(AUTH_KEY) === "1";
 
   if (!wantsAdmin) return;
@@ -13,6 +17,9 @@
     window.location.href = "./admin.html";
     return;
   }
+
+  // Keep admin mode sticky even if the host strips ?admin=1 from the URL.
+  localStorage.setItem(PREVIEW_KEY, "1");
 
   var dataApi = window.HaiSiteData;
   var siteData = null;
@@ -1353,6 +1360,7 @@
     });
     document.querySelector("#admin-lock").addEventListener("click", function () {
       localStorage.removeItem(AUTH_KEY);
+      localStorage.removeItem(PREVIEW_KEY);
       window.location.href = "./admin.html";
     });
     updateUndoRedoButtons();

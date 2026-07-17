@@ -7,8 +7,10 @@
   var latestSiteData = null;
   var LOCAL_CONTENT_KEY = "hai_site_content_local_v2";
   var isAdminPreview =
-    new URLSearchParams(window.location.search).get("admin") === "1" &&
-    localStorage.getItem("hai_admin_unlocked") === "1";
+    localStorage.getItem("hai_admin_unlocked") === "1" &&
+    (new URLSearchParams(window.location.search).get("admin") === "1" ||
+      localStorage.getItem("hai_admin_preview") === "1" ||
+      (window.location.hash || "").toLowerCase() === "#admin");
   var dragState = null;
   var pendingCardFocus = null;
 
@@ -110,7 +112,7 @@
     document.addEventListener("click", function (event) {
       if (document.body.classList.contains("admin-inline-mode")) return;
       var link = event.target.closest(
-        "a.hero-cta, a.section-cta, .footer-link-item a, a[data-section-hash]"
+        "a.hero-cta, a.section-cta, .footer-link-item a, a[data-section-hash], a.card-action"
       );
       if (!link) return;
       var href = link.getAttribute("href") || "";
@@ -476,16 +478,36 @@
     document.body.appendChild(modal);
   }
 
+  function resolveCardAction(item) {
+    var actionType = (item && item.actionType) || "";
+    if (actionType && actionType !== "none") return actionType;
+    if (item && item.videoUrl) return "video";
+    if (item && item.imageUrl) return "image";
+    if (item && item.url) return "link";
+    return "link";
+  }
+
   function createActionButton(item, uiLabels, sectionId, itemIndex) {
-    var actionType = item.actionType || "";
-    var buttonLabel = item.actionLabel || uiLabels.openLink || "Open";
-    if (!actionType || actionType === "none") return null;
+    var rawType = (item && item.actionType) || "";
+    // Always render a visible working button (Contact Us fallback when no action is set).
+    var actionType = resolveCardAction(item || {});
+    if (rawType === "none") actionType = "link";
+
+    var hasExplicitTarget = !!(item && (item.url || item.videoUrl || item.imageUrl));
+    var buttonLabel =
+      (item && item.actionLabel) ||
+      (hasExplicitTarget ? uiLabels.openLink || "Open" : "Contact Us");
+    var href = (item && item.url) || "#contact";
+
     var wrap = document.createElement("div");
     wrap.className = "card-actions card-action-wrap";
     var btn = document.createElement("a");
-    btn.href = item.url || "#";
+    btn.href = href;
     btn.className =
-      "card-action " + (item.actionStyle === "soft" ? "btn-soft" : "btn-primary");
+      "card-action " +
+      ((item && item.actionStyle === "soft") || rawType === "none" || (!hasExplicitTarget && actionType === "link")
+        ? "btn-soft"
+        : "btn-primary");
     btn.textContent = buttonLabel;
     if (isAdminPreview) {
       btn.setAttribute("data-inline-edit", "item-action-label");
@@ -495,20 +517,23 @@
     btn.addEventListener("click", function (event) {
       event.preventDefault();
       if (isAdminPreview) return;
-      if (actionType === "link" && item.url) {
-        if (String(item.url).charAt(0) === "#") {
-          navigateToHash(item.url);
+      var type = resolveCardAction(item || {});
+      if (rawType === "none") type = "link";
+      if (type === "link") {
+        var linkUrl = (item && item.url) || "#contact";
+        if (String(linkUrl).charAt(0) === "#") {
+          navigateToHash(linkUrl);
           return;
         }
-        window.open(item.url, "_blank", "noopener,noreferrer");
+        window.open(linkUrl, "_blank", "noopener,noreferrer");
         return;
       }
-      if (actionType === "section" || actionType === "card") {
-        navigateToHash(item.url || "#");
+      if (type === "section" || type === "card") {
+        navigateToHash((item && item.url) || "#");
         return;
       }
-      if (actionType === "video") {
-        var embedUrl = getYouTubeEmbed(item.videoUrl || item.url);
+      if (type === "video") {
+        var embedUrl = getYouTubeEmbed((item && item.videoUrl) || (item && item.url));
         if (embedUrl) {
           var iframe = document.createElement("iframe");
           iframe.src = embedUrl;
@@ -519,19 +544,21 @@
           iframe.style.width = "100%";
           iframe.style.height = "360px";
           iframe.style.border = "0";
-          openMediaModal(item.title || "Video", iframe);
-        } else if (item.videoUrl) {
+          openMediaModal((item && item.title) || "Video", iframe);
+        } else if (item && item.videoUrl) {
           window.open(item.videoUrl, "_blank", "noopener,noreferrer");
         }
         return;
       }
-      if (actionType === "image" && item.imageUrl) {
+      if (type === "image" && item && item.imageUrl) {
         var img = document.createElement("img");
         img.src = item.imageUrl;
-        img.alt = item.title || "Image";
+        img.alt = (item && item.title) || "Image";
         img.style.width = "100%";
-        openMediaModal(item.title || "Image", img);
+        openMediaModal((item && item.title) || "Image", img);
+        return;
       }
+      navigateToHash("#contact");
     });
     wrap.appendChild(btn);
     if (isAdminPreview) {
@@ -873,6 +900,18 @@
           card.appendChild(d);
         }
 
+        var videoBtn = createActionButton(
+          Object.assign({}, item, {
+            actionType: item.actionType && item.actionType !== "none" ? item.actionType : "video",
+            actionLabel: item.actionLabel || "Watch Video",
+            videoUrl: item.videoUrl || item.url
+          }),
+          uiLabels,
+          section.id,
+          itemIndex
+        );
+        if (videoBtn) appendCardActions(card, videoBtn);
+
         videoGrid.appendChild(decorateCard(card, section, itemIndex));
       });
       wrapper.appendChild(videoGrid);
@@ -914,25 +953,20 @@
         card.appendChild(p);
       }
 
-      if (item.url) {
-        var actionBtn = createActionButton(item, uiLabels, section.id, itemIndex);
-        if (actionBtn) {
-          appendCardActions(card, actionBtn);
-        } else {
-          var plainWrap = document.createElement("div");
-          plainWrap.className = "card-actions";
-          var link = document.createElement("a");
-          link.href = item.url;
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-          link.className = "card-action btn-soft";
-          link.textContent = uiLabels.openLink || "Open Link";
-          plainWrap.appendChild(link);
-          appendCardActions(card, plainWrap);
-        }
-      } else {
-        var button = createActionButton(item, uiLabels, section.id, itemIndex);
-        if (button) appendCardActions(card, button);
+      var actionBtn = createActionButton(item, uiLabels, section.id, itemIndex);
+      if (actionBtn) {
+        appendCardActions(card, actionBtn);
+      } else if (item.url) {
+        var plainWrap = document.createElement("div");
+        plainWrap.className = "card-actions";
+        var link = document.createElement("a");
+        link.href = item.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.className = "card-action btn-soft";
+        link.textContent = uiLabels.openLink || "Open Link";
+        plainWrap.appendChild(link);
+        appendCardActions(card, plainWrap);
       }
 
       grid.appendChild(decorateCard(card, section, itemIndex));
@@ -1375,14 +1409,22 @@
 
     var logo = document.querySelector("[data-logo]");
     if (logo) {
-      logo.src = data.logoUrl;
+      logo.src = data.logoUrl || "https://placehold.co/120x120/1e72ff/ffffff?text=HAI";
       logo.alt = localizedCompany + " logo";
+      logo.onerror = function () {
+        logo.onerror = null;
+        logo.src = "https://placehold.co/120x120/1e72ff/ffffff?text=HAI";
+      };
     }
 
     var hero = document.querySelector("[data-hero-image]");
     if (hero) {
-      hero.src = data.heroImageUrl;
+      hero.src = data.heroImageUrl || "https://placehold.co/900x600/101a2e/bfd1ff?text=HAI+Software";
       hero.alt = localizedCompany + " visual";
+      hero.onerror = function () {
+        hero.onerror = null;
+        hero.src = "https://placehold.co/900x600/101a2e/bfd1ff?text=HAI+Software";
+      };
     }
 
     setThemeColor(data.primaryColor);

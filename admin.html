@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HAI Admin Login</title>
-    <link rel="stylesheet" href="./styles.css?v=20260712h" />
+    <link rel="stylesheet" href="./styles.css?v=20260717a" />
   </head>
   <body class="admin-page">
     <header class="site-header">
@@ -57,7 +57,8 @@
         var button = document.querySelector("#login-btn");
 
         if (localStorage.getItem(AUTH_KEY) === "1") {
-          window.location.href = "./index.html?admin=1&v=20260712h";
+          localStorage.setItem("hai_admin_preview", "1");
+          window.location.href = "./index.html?admin=1&v=20260717a";
           return;
         }
 
@@ -68,7 +69,8 @@
             return;
           }
           localStorage.setItem(AUTH_KEY, "1");
-          window.location.href = "./index.html?admin=1&v=20260712h";
+          localStorage.setItem("hai_admin_preview", "1");
+          window.location.href = "./index.html?admin=1&v=20260717a";
         }
 
         button.addEventListener("click", unlock);
