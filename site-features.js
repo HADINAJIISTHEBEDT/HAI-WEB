@@ -94,12 +94,10 @@
 
   function initReveal() {
     var items = document.querySelectorAll(".reveal");
-    if (!("IntersectionObserver" in window)) {
-      items.forEach(function (el) {
-        el.classList.add("show");
-      });
-      return;
-    }
+    items.forEach(function (el) {
+      el.classList.add("show");
+    });
+    if (!("IntersectionObserver" in window)) return;
     var observer = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
@@ -113,12 +111,18 @@
     });
   }
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function boot() {
     initContactForm();
     initNewsletter();
     initBackToTop();
     initMobileMenu();
     initSectionSearch();
     initReveal();
-  });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
 })();
